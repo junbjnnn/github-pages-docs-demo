@@ -1,0 +1,6 @@
+/* CSS bổ sung cho theme Zensical: chứng minh extra_css hoạt động. */
+.status-badge { display: inline-block; padding: 0 .5em; border-radius: 4px; font-size: .8em; font-weight: 600; }
+.status-done { background: #1a7f3733; color: #1a7f37; }
+.status-wip { background: #9a670033; color: #9a6700; }
+[data-md-color-scheme="slate"] .status-done { color: #3fb950; }
+[data-md-color-scheme="slate"] .status-wip { color: #d29922; }
