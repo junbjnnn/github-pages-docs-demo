@@ -18,6 +18,10 @@ nav = [
   { "Changelog" = "changelog.md" },
 ]
 
+[project.extra]
+# Ẩn dòng "Made with Zensical" ở footer.
+generator = false
+
 [project.theme]
 language = "vi"
 features = [
