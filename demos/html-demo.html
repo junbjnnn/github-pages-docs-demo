@@ -1,0 +1,64 @@
+<!doctype html>
+<!--
+  Trang HTML tĩnh: Zensical copy nguyên file này sang output, không áp theme,
+  không đưa vào menu hay search. Toàn bộ CSS/JS nằm ngay trong file.
+-->
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>HTML Demo</title>
+  <style>
+    :root { --bg: #f6f8fa; --card: #fff; --fg: #1f2328; --muted: #59636e; --accent: #8250df; --border: #d1d9e0; }
+    @media (prefers-color-scheme: dark) {
+      :root { --bg: #0d1117; --card: #151b23; --fg: #e6edf3; --muted: #9198a1; --accent: #ab7df8; --border: #3d444d; }
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: system-ui, -apple-system, "Segoe UI", sans-serif; background: var(--bg); color: var(--fg); line-height: 1.6; }
+    main { max-width: 720px; margin: 0 auto; padding: 40px 16px; }
+    a { color: var(--accent); }
+    .card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 20px 24px; margin: 20px 0; }
+    .counter { display: flex; align-items: center; gap: 16px; }
+    .counter output { font-size: 2rem; font-weight: 700; min-width: 3ch; text-align: center; }
+    button { font: inherit; padding: 6px 16px; border-radius: 8px; border: 1px solid var(--border); background: var(--bg); color: var(--fg); cursor: pointer; }
+    button:hover { border-color: var(--accent); }
+    .muted { color: var(--muted); }
+  </style>
+</head>
+<body>
+<main>
+  <p><a href="../">← Về trang chủ</a></p>
+  <h1>Trang HTML thuần</h1>
+  <p class="muted">
+    File <code>docs/demos/html-demo.html</code> được Zensical copy y nguyên. Trang này
+    không có menu, search hay theme của site; CSS và JS đều viết trong file.
+  </p>
+
+  <div class="card">
+    <h2>Counter (JavaScript)</h2>
+    <div class="counter">
+      <button type="button" data-step="-1" aria-label="Giảm">−</button>
+      <output id="count">0</output>
+      <button type="button" data-step="1" aria-label="Tăng">+</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Khi nào dùng HTML thuần?</h2>
+    <ul>
+      <li>Report do tool sinh ra (coverage, benchmark…)</li>
+      <li>Prototype UI cần layout hoặc script riêng</li>
+      <li>Trang đã có sẵn, không muốn viết lại bằng Markdown</li>
+    </ul>
+  </div>
+</main>
+<script>
+  // Counter đơn giản để chứng minh JS inline chạy bình thường trên Pages.
+  const out = document.getElementById("count");
+  let n = 0;
+  document.querySelectorAll("button[data-step]").forEach((btn) =>
+    btn.addEventListener("click", () => { n += Number(btn.dataset.step); out.textContent = n; })
+  );
+</script>
+</body>
+</html>
