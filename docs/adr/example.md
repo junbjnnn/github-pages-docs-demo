@@ -11,7 +11,7 @@ title: "ADR-0001: Publish docs bằng GitHub Pages"
 
 ## Context
 
-Cần một nơi publish tài liệu (report, ADR) miễn phí, gắn liền với repo. test1 
+Cần một nơi publish tài liệu (report, ADR) miễn phí, gắn liền với repo. test1  đổi thêm test 2
 
 ## Decision
 
