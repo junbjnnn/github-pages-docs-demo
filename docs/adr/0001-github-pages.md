@@ -1,6 +1,6 @@
 # ADR-0001: Publish docs bằng GitHub Pages
 
-- **Status:** Accepted
+- **Status:** Superseded bởi [ADR-0003](0003-gh-pages-branch.md)
 - **Date:** 2026-11-12
 
 ## Context

@@ -1,20 +1,20 @@
-# Cấu hình Zensical. Source Markdown nằm ở content/, output build ra docs/
-# để GitHub Pages publish theo chế độ "Deploy from a branch" (main, /docs).
+# Cấu hình Zensical. Source Markdown nằm ở docs/, output build ra docs-page/.
+# Workflow .github/workflows/deploy-pages.yml build và push docs-page/ lên branch gh-pages.
 [project]
 site_name = "Pages Docs Demo"
-site_description = "Demo GitHub Pages publish từ /docs, build bằng Zensical"
+site_description = "Demo GitHub Pages build bằng Zensical, publish qua branch gh-pages"
 site_url = "https://junbjnnn.github.io/github-pages-docs-demo/"
 repo_url = "https://github.com/junbjnnn/github-pages-docs-demo"
 repo_name = "junbjnnn/github-pages-docs-demo"
-docs_dir = "content"
-site_dir = "docs"
+docs_dir = "docs"
+site_dir = "docs-page"
 extra_css = ["stylesheets/extra.css"]
 nav = [
   { "Trang chủ" = "index.md" },
   { "Bắt đầu" = "getting-started.md" },
   { "Tính năng" = "features.md" },
   { "Report" = "report.md" },
-  { "ADR" = ["adr/index.md", "adr/0001-github-pages.md", "adr/0002-zensical.md"] },
+  { "ADR" = ["adr/index.md", "adr/0001-github-pages.md", "adr/0002-zensical.md", "adr/0003-gh-pages-branch.md"] },
   { "Changelog" = "changelog.md" },
 ]
 

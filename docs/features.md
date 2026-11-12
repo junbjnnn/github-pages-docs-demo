@@ -45,14 +45,15 @@ sequenceDiagram
   participant GitHub
   participant Pages
   Dev->>GitHub: git push main
-  GitHub->>Pages: build /docs
+  GitHub->>GitHub: Actions build → gh-pages
+  GitHub->>Pages: deploy gh-pages
   Pages-->>Dev: site cập nhật
 ```
 
 ## Task list
 
 - [x] Tạo repo public
-- [x] Bật Pages từ `/docs`
+- [x] Publish qua branch `gh-pages`
 - [x] Chuyển sang Zensical
 - [ ] Thêm workflow cho branch `develop`
 

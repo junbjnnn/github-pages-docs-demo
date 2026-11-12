@@ -16,4 +16,5 @@ Giữ chế độ Deploy from a branch thay vì GitHub Actions như hướng d�
 
 - Có sẵn navigation, search, dark mode, Mermaid.
 - Phải commit cả output `docs/`; quên build thì site không cập nhật.
-- `docs/.nojekyll` tắt Jekyll để Pages serve nguyên HTML.
+  (Đã giải quyết ở [ADR-0003](0003-gh-pages-branch.md).)
+- `.nojekyll` tắt Jekyll để Pages serve nguyên HTML.

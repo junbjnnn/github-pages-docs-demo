@@ -1,0 +1,44 @@
+# Build site Zensical từ docs/ ra docs-page/, rồi push docs-page/ lên branch gh-pages.
+# GitHub Pages: Deploy from a branch → gh-pages → / (root).
+name: Deploy docs to gh-pages
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "docs/**"
+      - "zensical.toml"
+      - "scripts/build-docs.sh"
+      - ".github/workflows/deploy-pages.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write # cần quyền ghi để push branch gh-pages
+
+concurrency:
+  group: deploy-gh-pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      - name: Install Zensical
+        run: pip install zensical==0.0.67
+
+      - name: Build site
+        run: ZENSICAL=zensical ./scripts/build-docs.sh
+
+      - name: Push docs-page/ to gh-pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gh-pages
+          publish_dir: ./docs-page
+          commit_message: "deploy: ${{ github.sha }}"

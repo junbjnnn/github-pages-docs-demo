@@ -1,7 +1,7 @@
 # GitHub Pages Docs Demo
 
-Demo GitHub Pages publish từ folder `/docs` trên branch `main`, site được build bằng
-[Zensical](https://zensical.org/).
+Demo GitHub Pages: tài liệu viết bằng Markdown, build bằng [Zensical](https://zensical.org/),
+GitHub Actions publish lên branch `gh-pages`.
 
 Site: https://junbjnnn.github.io/github-pages-docs-demo/
 
@@ -9,37 +9,43 @@ Site: https://junbjnnn.github.io/github-pages-docs-demo/
 
 ```
 repo/
-├── src/                 ← code chính (không publish)
-├── content/             ← source Markdown của site
+├── src/                          ← code chính (không publish)
+├── docs/                         ← source tài liệu (Markdown, HTML tĩnh, CSS)
 │   ├── index.md
 │   ├── getting-started.md
 │   ├── features.md
 │   ├── report.md
 │   ├── changelog.md
 │   ├── adr/
+│   ├── demos/html-demo.html      ← trang HTML copy nguyên, không áp theme
 │   └── stylesheets/extra.css
-├── docs/                ← output build, GitHub Pages publish folder này
+├── docs-page/                    ← output build ở máy (gitignore)
 ├── scripts/build-docs.sh
-├── zensical.toml        ← cấu hình site (docs_dir = content, site_dir = docs)
+├── .github/workflows/deploy-pages.yml
+├── zensical.toml                 ← docs_dir = docs, site_dir = docs-page
 └── README.md
 ```
 
-## Làm việc với site
+## Luồng publish
+
+1. Sửa file trong `docs/`, commit và push lên `main` (hoặc sửa trực tiếp trên GitHub).
+2. Workflow `deploy-pages.yml` build `docs/` → `docs-page/` và push lên branch `gh-pages`.
+3. GitHub Pages publish branch `gh-pages`.
+
+## Preview ở máy
 
 ```bash
 python3 -m venv .venv && .venv/bin/pip install zensical
-.venv/bin/zensical serve     # preview http://localhost:8000
-./scripts/build-docs.sh      # build content/ → docs/
+.venv/bin/zensical serve     # http://localhost:8000
+./scripts/build-docs.sh      # build docs/ → docs-page/
 ```
-
-Sau khi build, commit cả `content/` và `docs/` rồi push lên `main`.
 
 ## Cấu hình Pages
 
 Settings → Pages → Build and deployment:
 
 - **Source:** Deploy from a branch
-- **Branch:** `main`
-- **Folder:** `/docs`
+- **Branch:** `gh-pages`
+- **Folder:** `/ (root)`
 
-`docs/.nojekyll` (do script build tạo) tắt Jekyll để Pages serve nguyên HTML của Zensical.
+Không sửa tay branch `gh-pages`: mỗi lần deploy, workflow sẽ ghi đè nội dung.

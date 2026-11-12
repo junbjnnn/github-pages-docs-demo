@@ -1,7 +1,7 @@
 # Pages Docs Demo
 
 Site này được viết bằng **Markdown**, build bằng [Zensical](https://zensical.org/) và publish qua
-**GitHub Pages** từ folder `/docs` trên branch `main`.
+**GitHub Pages** từ branch `gh-pages`.
 
 <div class="grid cards" markdown>
 
@@ -37,13 +37,23 @@ Site này được viết bằng **Markdown**, build bằng [Zensical](https://z
 
     [:octicons-arrow-right-24: Xem ADR](adr/index.md)
 
+-   :lucide-file-code: **HTML thuần**
+
+    ---
+
+    Trang `.html` copy nguyên, không áp theme của site.
+
+    [:octicons-arrow-right-24: Xem demo](demos/html-demo.html)
+
 </div>
 
 ## Luồng publish
 
 ```mermaid
 flowchart LR
-  A[content/*.md] -->|zensical build| B[docs/]
-  B -->|git push main| C[GitHub Pages]
-  C --> D[junbjnnn.github.io/github-pages-docs-demo]
+  A[docs/*.md] -->|git push main| B[GitHub Actions]
+  B -->|zensical build| C[docs-page/]
+  C -->|push| D[branch gh-pages]
+  D --> E[GitHub Pages]
+  E --> F[junbjnnn.github.io/github-pages-docs-demo]
 ```
