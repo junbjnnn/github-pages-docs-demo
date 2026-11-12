@@ -1,0 +1,45 @@
+<!doctype html>
+<!-- Trang HTML tĩnh trong docs/demo2/: tự xuất hiện trong sidebar với tên lấy từ <title>. -->
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Biểu đồ SVG</title>
+  <style>
+    :root { --bg: #fff; --fg: #1f2328; --muted: #59636e; --bar: #0969da; --grid: #d1d9e0; }
+    @media (prefers-color-scheme: dark) { :root { --bg: #0d1117; --fg: #e6edf3; --muted: #9198a1; --bar: #4493f8; --grid: #3d444d; } }
+    body { margin: 0; font-family: system-ui, -apple-system, "Segoe UI", sans-serif; background: var(--bg); color: var(--fg); }
+    main { max-width: 720px; margin: 0 auto; padding: 40px 16px; }
+    a { color: var(--bar); }
+    .muted { color: var(--muted); }
+    svg { width: 100%; height: auto; }
+    svg text { fill: var(--muted); font-size: 12px; }
+  </style>
+</head>
+<body>
+<main>
+  <p><a href="../">← Về trang chủ</a></p>
+  <h1>Biểu đồ SVG</h1>
+  <p class="muted">Số trang tài liệu theo tháng (dữ liệu mẫu), vẽ bằng JS thuần.</p>
+  <svg id="chart" viewBox="0 0 600 260" role="img" aria-label="Biểu đồ cột số trang theo tháng"></svg>
+</main>
+<script>
+  // Vẽ biểu đồ cột đơn giản để chứng minh trang HTML có JS riêng chạy được.
+  const data = [["T7", 4], ["T8", 7], ["T9", 9], ["T10", 12], ["T11", 15]];
+  const svg = document.getElementById("chart");
+  const max = Math.max(...data.map(([, v]) => v));
+  const ns = "http://www.w3.org/2000/svg";
+  const el = (tag, attrs) => {
+    const node = document.createElementNS(ns, tag);
+    for (const [k, v] of Object.entries(attrs)) node.setAttribute(k, v);
+    return node;
+  };
+  data.forEach(([label, value], i) => {
+    const h = (value / max) * 200, x = 40 + i * 110;
+    svg.append(el("rect", { x, y: 220 - h, width: 70, height: h, rx: 4, fill: "var(--bar)" }));
+    const t = el("text", { x: x + 35, y: 240, "text-anchor": "middle" }); t.textContent = label; svg.append(t);
+    const v = el("text", { x: x + 35, y: 212 - h, "text-anchor": "middle" }); v.textContent = value; svg.append(v);
+  });
+</script>
+</body>
+</html>
