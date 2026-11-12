@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Schema diagram</title>
+  <style>
+    :root { --bg: #fff; --fg: #1f2328; --muted: #59636e; --card: #f6f8fa; --border: #d1d9e0; --accent: #0969da; }
+    @media (prefers-color-scheme: dark) { :root { --bg: #0d1117; --fg: #e6edf3; --muted: #9198a1; --card: #151b23; --border: #3d444d; --accent: #4493f8; } }
+    body { margin: 0; font-family: system-ui, -apple-system, "Segoe UI", sans-serif; background: var(--bg); color: var(--fg); }
+    main { max-width: 760px; margin: 0 auto; padding: 40px 16px; }
+    a { color: var(--accent); }
+    .tables { display: flex; flex-wrap: wrap; gap: 24px; align-items: flex-start; }
+    .table { flex: 1 1 220px; background: var(--card); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+    .table h2 { margin: 0; padding: 8px 12px; font-size: 1rem; background: var(--accent); color: #fff; }
+    .table ul { list-style: none; margin: 0; padding: 8px 12px; font-family: ui-monospace, monospace; font-size: .9rem; }
+    .table li { padding: 2px 0; }
+    .muted { color: var(--muted); }
+  </style>
+</head>
+<body>
+<main>
+  <p><a href="./">← Về Database</a></p>
+  <h1>Schema diagram</h1>
+  <p class="muted">Trang HTML tĩnh ở cấp 3: <code>docs/guides/backend/database/schema-diagram.html</code>.</p>
+  <div class="tables">
+    <div class="table"><h2>users</h2><ul><li>🔑 id</li><li>email</li><li>name</li><li>last_login_at</li></ul></div>
+    <div class="table"><h2>orders</h2><ul><li>🔑 id</li><li>🔗 user_id → users.id</li><li>total</li><li>created_at</li></ul></div>
+  </div>
+</main>
+</body>
+</html>
