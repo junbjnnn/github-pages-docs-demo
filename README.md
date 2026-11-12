@@ -18,13 +18,27 @@ repo/
 │   ├── changelog.md
 │   ├── adr/
 │   ├── demos/html-demo.html      ← trang HTML copy nguyên, không áp theme
+│   ├── demo2/                    ← ví dụ section tự hiện trên sidebar
 │   └── stylesheets/extra.css
 ├── docs-page/                    ← output build ở máy (gitignore)
-├── scripts/build-docs.sh
+├── scripts/
+│   ├── build-docs.sh                    ← build docs/ → docs-page/
+│   └── generate-nav-from-docs-tree.py   ← tự sinh sidebar từ cây docs/
 ├── .github/workflows/deploy-pages.yml
-├── zensical.toml                 ← docs_dir = docs, site_dir = docs-page
+├── zensical.toml                 ← cấu hình site (không khai báo nav)
 └── README.md
 ```
+
+## Sidebar tự động
+
+Không khai báo `nav` trong `zensical.toml`. Mỗi lần build, `generate-nav-from-docs-tree.py`
+quét `docs/` (cả `.md` lẫn `.html`) và sinh config tạm `.zensical.build.toml`:
+
+- Mỗi thư mục con thành một section; tên là heading `#` của `index.md` hoặc tên thư mục.
+- Tên trang: heading `#` (Markdown) hoặc thẻ `<title>` (HTML).
+- Thứ tự: `index.md` → file theo tên → thư mục con theo tên.
+
+Thêm `docs/demo3/abc.html` rồi push là sidebar có mục **Demo3**.
 
 ## Luồng publish
 

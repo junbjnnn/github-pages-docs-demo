@@ -9,16 +9,20 @@ python3 -m venv .venv
 
 ## Viết nội dung
 
-Thêm file `.md` vào `docs/`, rồi khai báo trong `nav` của `zensical.toml`:
+Thêm file `.md` hoặc `.html` vào `docs/` hoặc bất kỳ thư mục con nào. **Sidebar tự cập nhật**,
+không cần khai báo `nav`:
 
-```toml title="zensical.toml"
-nav = [
-  { "Trang chủ" = "index.md" },
-  { "Trang mới" = "trang-moi.md" }, # (1)!
-]
+```text
+docs/
+├── index.md              → Trang chủ (luôn đứng đầu)
+├── report.md             → mục "Report" (tên lấy từ heading #)
+└── demo2/                → section "Demo2" (tên thư mục, hoặc heading # của demo2/index.md)
+    ├── chart.html        → tên lấy từ thẻ <title>
+    └── markdown-page.md
 ```
 
-1.  Nếu bỏ trống `nav`, Zensical tự tạo menu từ cấu trúc thư mục.
+Thứ tự trong mỗi thư mục: `index.md` → các file (theo tên file) → các thư mục con (theo tên).
+Thư mục chỉ chứa asset (CSS, ảnh) không hiện trên sidebar.
 
 ## Xem trước và build
 

@@ -3,3 +3,4 @@ __pycache__/
 .cache/
 # Output build của Zensical, được workflow publish lên branch gh-pages
 docs-page/
+.zensical.build.toml

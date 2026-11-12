@@ -8,7 +8,7 @@ on:
     paths:
       - "docs/**"
       - "zensical.toml"
-      - "scripts/build-docs.sh"
+      - "scripts/**"
       - ".github/workflows/deploy-pages.yml"
   workflow_dispatch:
 
